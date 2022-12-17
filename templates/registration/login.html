@@ -1,0 +1,19 @@
+{% extends '../core/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- templates/registration/login.html -->
+<!-- we test if the user is authenticated -->
+{% if user.is_authenticated %}
+    You are connected as <strong> {{ user.username }}!</strong>
+    <a href="/accounts/logout" >Logout !</a>
+<!-- if user is not authenticated, we display the authentication form: -->   
+{% else %}
+<h3>Log In</h3>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Log In</button>
+</form>
+{% endif %}
+{% endblock %}

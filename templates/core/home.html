@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}  Home page {% endblock title %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+
+
+<li class="nav-item">
+  <a href="{% url 'admin:index' %}">Admin</a>
+</li>
+<li class="nav-item">
+  <a href="{% url 'posts' %}">Liste des activités</a>
+</li>
+
+<h1>Le Message de bienvenue</h1>
+{% for msg in message %}
+    
+      <div class="slide">
+        <figure class="portrait" title="Sample Image">
+          <img src="{{ msg.welcomeImage.url}}" alt="sample image" />
+        </figure>
+        <div class="civilite">
+          <ul>
+            <li>
+              <h3>{{msg.title}}</h3>
+            </li>
+            <li><img src="{% static 'images/ok.png' %}" alt="My image" /></li>
+          </ul>
+          <h5>{{person.fullName}}</h5>
+        </div>
+      </div>
+      {% endfor %}
+
+      <h1>La liste des posts</h1>
+      <div class="row row-cols-1 row-cols-md-2">
+        {% for post in posts %}
+        <div class="col mb-4">
+          <div class="card">
+            <div class="view overlay">
+              <img class="card-img-top" src="{{post.post_image.url}}" alt="">
+              <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">{{post.title}}</h4>
+              <p class="card-text">{{post.description}}</p>
+              <a href="{% url 'post_details' post.slug %}" class="btn btn-primary btn-md">Read more</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+{% endblock %}
