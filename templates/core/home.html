@@ -17,9 +17,6 @@
 <li class="nav-item">
   <a href="{% url 'admin:index' %}">Admin</a>
 </li>
-<li class="nav-item">
-  <a href="{% url 'posts' %}">Liste des activités</a>
-</li>
 
 <h1>Le Message de bienvenue</h1>
 {% for msg in message %}
@@ -33,13 +30,11 @@
             <li>
               <h3>{{msg.title}}</h3>
             </li>
-            <li><img src="{% static 'images/ok.png' %}" alt="My image" /></li>
           </ul>
-          <h5>{{person.fullName}}</h5>
         </div>
       </div>
       {% endfor %}
-
+<!-- 
       <h1>La liste des posts</h1>
       <div class="row row-cols-1 row-cols-md-2">
         {% for post in posts %}
@@ -60,4 +55,5 @@
         </div>
         {% endfor %}
       </div>
+       -->
 {% endblock %}

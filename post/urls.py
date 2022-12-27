@@ -1,8 +1,10 @@
-from django.urls import path 
+from django.urls import path
 from .import views
-app_name = 'post'
+
 urlpatterns = [
-    path('posts-list/', views.posts_list, name = 'posts'),
-    path('<slug:slug>/', views.post_details, name='post_details'),
-    path('getSubcategory/', views.get_subcategory)
+    path('home/', views.homepage, name = 'homepage'),
+    path('post/<slug>/', views.post, name = 'post'),
+    path('search/', views.search, name = 'search'),
+    path('postlist/<slug>/', views.postlist, name = 'postlist'), 
+    path('posts/', views.allposts, name = 'allposts'),
 ]
